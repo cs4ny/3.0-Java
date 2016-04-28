@@ -1,0 +1,82 @@
+import java.util.Arrays;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+
+// Learning Java
+// Random implementations
+
+public class LearningJava {
+	
+	public static void main(String[] args) {
+		
+		// Set different types of variables 
+		String name = null;
+		int age=0;
+		ArrayList<Integer> aList = new ArrayList<Integer>(); // put terms in bracket if needed 
+		int[] count = new int[10]; //or {1,2,3,4,5,...}
+		
+		// Input Scanner string
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter your name; ");
+		if(input.hasNext()){
+			name = input.next();
+		}
+		System.out.println(name);
+		
+		// Input Scanner int
+		Scanner inpuT = new Scanner(System.in);
+		System.out.println("Enter your age; ");
+		if (input.hasNextInt()){
+			age = inpuT.nextInt();
+		}
+		System.out.println(age);
+
+		// Input Scanner for loop int in list
+		Scanner average = new Scanner(System.in);
+		for (int i = 0;i<5;i++){
+			System.out.println("Enter a number:");
+			int num = average.nextInt();
+			aList.add(num);
+			
+		}
+		System.out.println(aList);
+		
+		// Input Scanner while loop int in array
+		int i = 0;
+		Scanner averageE = new Scanner(System.in);
+		while (i<5){
+			System.out.println("Enter another Number:");
+			int nuM = averageE.nextInt();
+			count[i] = nuM; // no add in array
+			i ++;
+		}
+		System.out.println(count);
+		
+		// Function reverse list
+		List<Integer> tList = Arrays.asList(3,6,2,7,9);
+		System.out.println(rList(tList));
+	}
+	
+	// rList
+	// Reverse an input list
+	public static List<Integer> rList(List<Integer> aList){
+		
+		// Set
+		List<Integer> nList = new ArrayList<Integer>();
+		int sIn = 0;
+		int eIn = 0;
+		
+		// Loop and switch start int and end int
+		for(int i = 0; i < aList.size(); i++ ){
+			sIn = aList.get(i);
+			eIn = aList.get(aList.size()-1-i);
+			sIn = eIn;
+			nList.add(sIn);	
+		}
+
+		return (nList);	
+		
+	}
+
+}
