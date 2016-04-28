@@ -1,0 +1,48 @@
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.List;
+import java.util.ArrayList;
+import java.io.*;
+
+// Learning Java
+// Stack Class LIFO
+
+public class stack {
+	
+	// Set List
+	private  List<Object> items = new ArrayList<>();
+	
+	// Check if stack is empty
+	public  boolean isEmpty(){
+		return items.isEmpty();
+	}
+	
+	// Push
+	public void push(Object item){
+		items.add(item);
+	}
+	
+	// Pop last item
+	public  Object pop(){
+		Object lItem = items.get(items.size()-1);
+		items.remove(items.size()-1);
+		return lItem;
+	}
+	
+	// Check next item
+	public  Object peek(){
+		return items.get(items.size() - 1);
+	}
+	
+	// Size
+	public  int sizE(){
+		return items.size();
+	}
+	
+	// For printing purpose
+	public List<Object> output(){
+		return items;
+	}
+	
+
+}
