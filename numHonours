@@ -1,0 +1,33 @@
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.List;
+import java.util.ArrayList;
+import java.io.*;
+
+
+public class test {
+
+
+	public static void main(String[] args) {
+		
+		List testScores = Arrays.asList(50,60,90,100,40,88,72);
+		System.out.println(numHonours(testScores));
+
+	}
+	
+	
+	
+	
+	public static int numHonours(List aList){
+		
+		int count = 0;
+		
+		for (int i = 0; i < aList.size(); i++){
+			if ((int) aList.get(i) >= 80){
+				count += 1;
+			}
+		}
+		return count;
+	}
+
+}
