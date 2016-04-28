@@ -1,0 +1,180 @@
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.List;
+import java.util.ArrayList;
+import java.io.*;
+
+// Learning Java
+// Banker Program translated from Mr.V python
+
+public class bankingOOP {
+	
+	// Set variables
+	static List<Customer> customList;
+	static Customer curCustom;
+	
+	// main 
+	// Load customer list and start loop for login
+	public static void main(String[] args) throws IOException {
+		
+		customList = ldCustom();
+		boolean loop = true;
+		
+		while (loop){
+			curCustom = logIn();
+			menu();
+		}
+		
+}	
+	
+	// menu()
+	// Ask users for banking options
+	public static void menu() throws IOException{
+		
+		boolean mLoop = true;
+		
+		// Loop and switch case
+		while (mLoop){
+			int uInputNum = menSelect();
+			switch(uInputNum){
+			case 1:
+				curCustom.printStatement();
+				break;
+			case 2:
+				Scanner uInput = new Scanner(System.in);
+				System.out.println("\nPlease enter the deposite amount: ");
+				int depAmnt = uInput.nextInt();
+				curCustom.deposit(depAmnt);
+				break;
+			case 3:
+				Scanner uInput1 = new Scanner(System.in);
+				System.out.println("\nPlease enter the withdrawal amount: ");
+				int witAmnt = uInput1.nextInt();
+				curCustom.withdraw(witAmnt);
+				break;
+			case 4:
+				saveData();
+				break;
+			case 5:
+				saveData();
+				System.out.println("\nThank you for using Bank Program. Logged out and Saved");
+				mLoop = false;
+				break;
+			case 6:
+				nCustom();
+				mLoop = false;
+			}
+		}
+	}
+	
+	// menSelect
+	// Printing of statements 
+	public static int menSelect(){
+		System.out.println("Menu of " + curCustom.getName());
+		System.out.println("1. Print a Statement");
+		System.out.println("2. Deposit");
+		System.out.println("3. Withdrawal");
+		System.out.println("4. Save");
+		System.out.println("5. Logout and Save");
+		System.out.println("6. Add a new Customer");
+		
+		Scanner uInput3 = new Scanner(System.in);
+		System.out.println("Please select a number from the menu above: ");
+		int uSel = uInput3.nextInt();
+		return uSel;
+	}
+	
+	// ldCustom
+	// Load customer from a file
+	public static List<Customer> ldCustom() throws IOException{
+		
+		List<Customer> tCustom = new ArrayList<Customer>();
+		
+		// Read in file
+		// Trim, Split, Convert and Add
+		try(BufferedReader br = new BufferedReader(new FileReader("F:\\C.S\\bankData.txt"))) {
+		    for(String line; (line = br.readLine()) != null; ) {
+		    	line = line.trim();
+		    	String[] lines = line.split(",");
+		    	int fiId = Integer.parseInt(lines[0]);
+		    	long thPhone = Long.parseLong(lines[2]);
+		    	float foBal = Float.parseFloat(lines[3]);
+		    	
+		    	Customer nCustom = new Customer(fiId,lines[1],thPhone,foBal);
+		    	tCustom.add(nCustom);
+		    }
+		}
+		
+		return tCustom;
+	}
+	
+	// logIn
+	// Log in to database for the right customer
+	public static Customer logIn() throws IOException{
+		while(true){
+			
+			// Scanner input for ID
+			Scanner uInput4 = new Scanner(System.in);
+			System.out.println("Please enter you Id#: ");
+			int uLog = uInput4.nextInt();
+			
+			// Loop through customer list to find right ID
+			try{
+				int idNum = uLog;
+				int i = 0;
+				
+				while(i < customList.size() & ((Customer) customList.get(i)).getId() != idNum){
+					i = i + 1;
+				}
+				if (i < customList.size()){
+					System.out.println("Good day " + ((Customer) customList.get(i)).getName());
+					return (Customer) customList.get(i);
+				}
+			}finally{
+				System.out.println(" ");
+			}
+		}
+	}
+
+	// saveData
+	// Save user's data
+	public static void saveData() throws IOException{
+		
+		// Write
+		try (PrintStream wr = new PrintStream(new FileOutputStream("F:\\C.S\\bankData.txt"))) {
+			
+			for (Customer cus : customList){
+				wr.print(cus.getOutputStr());
+			}
+			wr.close();
+			System.out.println("Data saved");
+		}
+	}	
+	
+	// nCustom
+	// Create a new customer
+	public static void nCustom() throws IOException{
+		
+		// Scanner input name
+		Scanner uInput5 = new Scanner(System.in);
+		System.out.println("Please enter you Name: ");
+		String uName = uInput5.next();
+		
+		// Scanner input phone
+		Scanner uInput6 = new Scanner(System.in);
+		System.out.println("Please enter you phoneNum: ");
+		Long uPhone = uInput6.nextLong();
+		
+		// Scanner input balance
+		Scanner uInput7 = new Scanner(System.in);
+		System.out.println("Please enter you Balance: ");
+		Float uBal = uInput7.nextFloat();
+		
+		// Add Object Customer to list
+		Customer nCustomer = new Customer(customList.size() + 1,uName,uPhone,uBal);
+		customList.add(nCustomer);
+		saveData();
+	}
+	
+
+}
