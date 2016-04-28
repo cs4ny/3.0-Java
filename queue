@@ -1,0 +1,38 @@
+import java.util.ArrayList;
+import java.util.List;
+
+// Learning Java
+// Queue FIFO
+
+public class queue {
+	
+	// Set List
+	private  List<Object> items = new ArrayList<>();
+	
+	// Check if empty
+	public  boolean isEmpty(){
+		return items.isEmpty();
+	}
+	
+	// Insert item to beginning of list
+	public void enqueue(Object item){
+		items.add(0,item);
+	}
+	
+	// Same as pop
+	public  Object dequeue(){
+		Object lItem = items.get(items.size()-1);
+		items.remove(items.size()-1);
+		return lItem;
+	}
+	
+	// Size
+	public  int sizE(){
+		return items.size();
+	}
+	
+	// For printing purpose
+	public List<Object> output(){
+		return items;
+	}
+}
