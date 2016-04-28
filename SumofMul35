@@ -1,0 +1,34 @@
+// Learning Java
+// Sum of Multiples (under 1000) of both 3 and 5 
+
+public class SumofMul35 {
+
+	public static void main(String[] args) {
+		
+		// Set Variables
+		int iThr = 1;
+		int iFiv = 1;
+		int sum = 0;
+		
+		// Loop for multiples
+		while (iThr * 3 <1000 || iFiv * 5 < 1000){
+			
+			// Check so multiples don't repeat
+			if (iThr % 5 != 0){
+				sum += iThr * 3;
+			}
+			if (iFiv * 5 < 1000){
+				sum += iFiv * 5;
+			}
+			
+			// Continue loops
+			iThr += 1;
+			iFiv += 1;
+		}
+		
+		// Print
+		System.out.println(sum);
+
+	}
+
+}
