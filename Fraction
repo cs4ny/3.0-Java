@@ -1,0 +1,40 @@
+// Learning Java
+// Fraction interativepython Class
+
+public class Fraction{
+	
+	// Set
+	private int num;
+	private int den;
+	
+	// Constructor
+	public Fraction(int top, int bottom){
+		num = top;
+		den = bottom;
+	}
+	
+	// Write out fraction
+	public void write() {
+		System.out.println(num + " / " + den);
+	}
+
+	// Add two fractions and return a fraction
+	public Fraction add(Fraction oFrac){
+		int newNum = num * oFrac.den + oFrac.num * den;
+		int newDen = den * oFrac.den;
+		return new Fraction(newNum,newDen);
+		
+	}
+	
+	// main
+	public static void main(String[]args){
+		Fraction fra1 = new Fraction(1,2);
+		fra1.write();
+		
+		Fraction fra2 = new Fraction(5,8);
+		fra2.write();
+		
+		Fraction sumFra = fra1.add(fra2);
+		sumFra.write();
+	}
+}
