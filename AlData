@@ -1,0 +1,196 @@
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.List;
+import java.util.ArrayList;
+import java.io.*;
+
+// Learning Java
+// Stack; Queue; Deque; Unordered and Ordered Lists
+
+public class AlData {
+	
+	// main
+	// Testing functions that uses stack 
+	public static void main(String[] args) {
+		// Basic Stack
+		stack nSta = new stack();
+		System.out.println(nSta.isEmpty());
+		nSta.push(4);
+		nSta.push("dog");
+		System.out.println(nSta.peek());
+		nSta.push(true);
+		System.out.println(nSta.sizE());
+		System.out.println(nSta.isEmpty());
+		nSta.push(8.4);
+		System.out.print(nSta.pop());
+		System.out.print(nSta.pop());
+		System.out.println(nSta.sizE());
+		
+		// Reverse String
+		System.out.println(revString("hello"));
+		System.out.println(revString("apple"));
+		System.out.println(revString("0123456789"));
+		System.out.println(revString("x"));
+		
+		// Parse Check
+		System.out.println(parCheck("((())))"));
+		System.out.println(parCheck("(()"));
+		
+		// Base Conversion
+		System.out.println(baseConv(25,2));
+		System.out.println(baseConv(25,16));
+		System.out.println(baseConv(26,26));
+		System.out.println(baseConv(256,16));
+		
+		// Basic Queue
+		queue nQue = new queue();
+		nQue.enqueue("hello");
+		nQue.enqueue("dog");
+		nQue.enqueue(3);
+		nQue.dequeue();
+		System.out.println(nQue.output());
+		
+		// Hot Potato
+		String[] nameList = {"Bill","David","Susan","Jane","Kent","Brad"};
+		System.out.println(hotPot(nameList,7));
+		
+		// Basic Deque
+		deque dQue = new deque();
+		System.out.println(dQue.isEmpty());
+		dQue.addRear(4);
+		dQue.addRear("dog");
+		dQue.addFront("cat");
+		dQue.addFront(true);
+		System.out.println(dQue.sizE());
+		System.out.println(dQue.isEmpty());
+		dQue.addRear(8.4);
+		System.out.println(dQue.removeRear());
+		System.out.println(dQue.removeFront());
+		
+		// Palindrome
+		System.out.println(checkPal("hello")+ " is this");
+		System.out.println(checkPal("lsdkjfskflsdkjfskf")+ " is this");
+		System.out.println(checkPal("radar")+ " is this");
+		System.out.println(checkPal("atoyota")+ " is this");
+		
+	}
+	
+	// revString
+	// Returns a reversed string using stack
+	public static List<String> revString(String myStr){
+		// Set 
+		stack oStrSta = new stack();
+		List nStrStr = new ArrayList<>();
+		// Loop and push Stack
+		for (int i = 0; i < myStr.length(); i ++){
+			oStrSta.push(myStr.charAt(i));
+		}
+		// Loop, Add for String ; Pop for Stack
+		for (int i = 0; i < myStr.length(); i ++){
+			nStrStr.add(oStrSta.peek());
+			oStrSta.pop();
+		}
+		return nStrStr;
+	}
+	
+	// parCheck
+	// Checks if parentheses are balanced
+	public static boolean parCheck(String symStr){
+		// Set
+		stack staStr = new stack();
+		boolean ok = true;
+		// Check if '(' has a pair for pop
+		for (char e : symStr.toCharArray()){
+			if (e == '('){
+				staStr.push(e);
+			}else{
+				if (staStr.isEmpty()){
+					ok = false;
+				}else{
+					staStr.pop();
+				}
+			}
+		}
+		
+		// Final check for palindrome
+		if (staStr.isEmpty()){
+			ok = true;
+		}else{
+			ok = false;
+		}
+		
+		return ok;
+	}
+	
+	// baseConv
+	// Convert an integer number to base of choice
+	public static List baseConv(int tbChan, int base){
+		// Set
+		stack bTwoTemp = new stack();
+		List h = new ArrayList<>();
+		String digits = "0123456789ABCDEF";
+		// Loop divide for remainder
+		while (tbChan != 0){
+			int rMainD = tbChan % base;
+			bTwoTemp.push(rMainD);
+			tbChan = tbChan / base;
+			
+		}
+		// Get the right digits for base String and pop Stack
+		while(!bTwoTemp.isEmpty()){
+			h.add(digits.charAt((int) bTwoTemp.pop()));
+			
+		}
+		
+		return h;
+		
+	}
+	
+	// hotPotato interativepython
+	// Give the person who has the potato last
+	public static Object hotPot(String[] naLis, int num){
+		// Set
+		queue naQue = new queue();
+		// Enqueue name
+		for (Object name : naLis){
+			naQue.enqueue(name);
+		}
+		// Loop till size is 2
+		// Enqueue the Dequeue 
+		while (naQue.sizE() > 1){
+			for (int i = 0; i < num; i++){
+				naQue.enqueue(naQue.dequeue());
+			}
+			// Take out the last person
+			naQue.dequeue();	
+		}
+
+		return naQue.dequeue();
+	}
+	
+	// checkPal interativepython
+	// Check if a string is a palindrome
+	public static boolean checkPal(String aaStri){
+		// Set
+		deque aDeq = new deque();
+		boolean isEqual = true;
+		// Add char of String to Deque
+		for (int i = 0; i < aaStri.length(); i ++){
+			aDeq.addRear(aaStri.charAt(i));
+		}
+		// Loop to check both removeFront and removeRear characters
+		while (aDeq.sizE() > 1 & isEqual){
+			Object fChar = aDeq.removeFront();
+			Object sChar = aDeq.removeRear();
+			if (fChar != sChar){
+				isEqual = false;
+				
+			}
+		}
+		return isEqual;
+		
+	}
+
+	
+
+}
