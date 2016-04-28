@@ -1,0 +1,77 @@
+Learning Java
+
+-dynamic typed = python; static typed = java
+
+-public,protected,private : security on methods
+-static
+-void :return None
+- String name; int/ boolean/byte/long/char/double/float
+- import java.until.Scanner;
+-import javax.swing.* : for input/output box
+-Return type	Method name	Description
+boolean	hasNext()	returns true if more data is present
+boolean	hasNextInt()	returns true if the next thing to read is an integer
+boolean	hasNextFloat()	returns true if the next thing to read is a float
+boolean	hasNextDouble()	returns true if the next thing to read is a double
+Integer	nextInt()	returns the next thing to read as an integer
+Float	nextFloat()	returns the next thing to read as a float
+Double	nextDouble()	returns the next thing to read as a Double
+String	next()	returns the next thing to read as a String
+-array(know the number of terms) arrayList(don't know number of terms)
+
+Java Lesson 1
+
+public static void main(String[] args)
+
+public, protected, private methods
+void returns no type
+main = name
+string type, arg = array of strings
+
+System.out.println("Hello World!")
+System = class
+out = object (standard output stream)
+println = method
+
+# In python
+class Hello(object):
+    @staticmethod
+    def main(args):
+        print "Hello World!"
+
+
+import java.util.Scanner;
+
+public class TempConv {
+    public static void main(String[] args) {
+        Double fahr;
+        Double cel;
+        Scanner in;
+
+        in = new Scanner(System.in);
+        System.out.println("Enter the temperature in F: ");
+        fahr = in.nextDouble();
+
+        cel = (fahr - 32) * 5.0/9.0;
+        System.out.println("The temperature in C is: " + cel);
+
+        System.exit(0);
+    }
+
+}
+
+Variable declaration
+Python: Dyanamically typed language (variable can refer to any knid of object)
+Java: Statically typed language (variable is refe to specific data type)
+
+String comparision
+Python	Java	Description
+str[3]	str.charAt(3)	Return character in 3rd position
+str[2:5]	str.substring(2,4)	Return substring from 2nd to 4th
+len(str)	str.length()	Return the length of the string
+str.find('x')	str.indexOf('x')	Find the first occurrence of x
+str.split()	str.split('\s')	Split the string on whitespace into a list/array of strings
+str.split(',')	str.split(',')	Split the string at ',' into a list/array of strings
+str + str	str.concat(str)	Concatenate two strings together
+str.strip()	str.trim()	Remove any whitespace at the beginning or end
+
