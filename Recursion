@@ -1,0 +1,50 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Random;
+import java.io.*;
+
+// Learning Java
+// Recursion Practice
+
+public class Recursion {
+	
+	public static int facTo(int aNum){
+		if (aNum == 1){
+			return aNum;
+		}else{
+			return aNum * facTo(aNum - 1);
+		}
+	}
+	
+	public static int fiBon(int aTerm){
+		if (aTerm <= 2){
+			return 1;
+		}else{
+			return fiBon(aTerm - 1) + fiBon(aTerm - 2);
+		}
+	}
+	
+	public static boolean hasDigit(List aStr){
+		List aDig = Arrays.asList(0,1,2,3,4,5,6,7,8,9);
+		while (aStr.size() >= 1) {
+			if (aDig.contains(aStr.indexOf(0))){
+				return true;
+			}else{
+				return hasDigit(aStr.subList(1,aStr.size()));
+			}
+		}
+		return false;
+	}
+
+	public static void main(String[] args) {
+		System.out.println(facTo(6));
+		System.out.println(fiBon(6));
+		List aList = Arrays.asList("s",1,2,3,4,5,6,7,8,9);
+		System.out.println(hasDigit(aList));
+		
+
+	}
+
+}
