@@ -1,0 +1,51 @@
+import java.util.ArrayList;
+import java.util.List;
+
+// Learning Java
+// Deque Remove/Add Front and Rear
+
+public class deque {
+	
+	// Set List
+	private  List<Object> items = new ArrayList<>();
+	
+	// Check if empty
+	public  boolean isEmpty(){
+		return items.isEmpty();
+	}
+	
+	// Add item end of list
+	public void addFront(Object item){
+		items.add(item);
+	}
+	
+	// Add item front of list
+	public void addRear(Object item){
+		items.add(0,item);
+	}
+	
+	// Remove item end of list
+	public  Object removeFront(){
+		Object lItem = items.get(items.size()-1);
+		items.remove(items.size()-1);
+		return lItem;
+	}
+	
+	// Remove item front of list
+	public  Object removeRear(){
+		Object lItem = items.get(0);
+		items.remove(0);
+		return lItem;
+	}
+	
+	// Size
+	public  int sizE(){
+		return items.size();
+	}
+	
+	// For printint purpose
+	public List<Object> output(){
+		return items;
+	}
+	
+}
